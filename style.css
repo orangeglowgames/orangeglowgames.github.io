@@ -171,3 +171,24 @@ img {
   font-weight: bold;
   cursor: pointer;
 }
+
+.itch-widget-container {
+  position: relative;
+  width: 100%;
+  max-width: 550px;
+  margin: 1em auto;
+  padding-bottom: 30%; /* Aspect ratio - adjust if needed */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.2);
+}
+
+.itch-widget {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
