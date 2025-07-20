@@ -60,7 +60,7 @@
                 <div id="itch-embed-container">
                     <!-- Desktop Embed -->
                     <iframe 
-                      id="itch-desktop" 
+                      id="itch-desktop-2d" 
                       frameborder="0" 
                       src="https://itch.io/embed/2091565?bg_color=f6d4d6&amp;fg_color=222222&amp;link_color=fdfbf0&amp;border_color=c6767a" 
                       width="552" 
@@ -68,7 +68,7 @@
                       title="2D Or Not 2D">
                     </iframe>
                     <!-- Mobile Button (Hidden by Default) -->
-                    <iframe frameborder="0" src="https://itch.io/embed/2091565?bg_color=f6d4d6&amp;fg_color=222222&amp;link_color=fdfbf0&amp;border_color=c6767a" width="208" height="167"><a href="https://orangeglowgames.itch.io/2dornot2d">2D Or Not 2D by OrangeGlow GAMES</a></iframe>
+                    <iframe id="itch-mobile-2d" frameborder="0" src="https://itch.io/embed/2091565?bg_color=f6d4d6&amp;fg_color=222222&amp;link_color=fdfbf0&amp;border_color=c6767a" width="208" height="167"><a href="https://orangeglowgames.itch.io/2dornot2d">2D Or Not 2D by OrangeGlow GAMES</a></iframe>
                 </div>
 
                 <div id="lightbox" class="lightbox">
@@ -124,17 +124,27 @@
 <script>
   const isMobile = window.innerWidth <= 600;
 
-  const iframe = document.getElementById("itch-desktop");
-  const mobileLink = document.getElementById("itch-mobile");
+  // Hue will be the death of xx
+  const hueDesktop = document.querySelector('#itch-desktop');
+  const hueMobile = document.querySelectorAll('#itch-embed-container iframe')[1]; // This is still your second iframe inside the first container
+
+  // 2D Or Not 2D
+  const twoDDesktop = document.getElementById('itch-desktop-2d');
+  const twoDMobile = document.getElementById('itch-mobile-2d');
 
   if (isMobile) {
-    iframe.style.display = "none";
-    mobileLink.style.display = "inline-block";
+    if (hueDesktop) hueDesktop.style.display = "none";
+    if (hueMobile) hueMobile.style.display = "inline-block";
+    if (twoDDesktop) twoDDesktop.style.display = "none";
+    if (twoDMobile) twoDMobile.style.display = "inline-block";
   } else {
-    iframe.style.display = "block";
-    mobileLink.style.display = "none";
+    if (hueDesktop) hueDesktop.style.display = "block";
+    if (hueMobile) hueMobile.style.display = "none";
+    if (twoDDesktop) twoDDesktop.style.display = "block";
+    if (twoDMobile) twoDMobile.style.display = "none";
   }
 </script>
+
 
 </body>
 
