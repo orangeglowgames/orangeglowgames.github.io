@@ -65,6 +65,27 @@
             </div>
         </section>
     </main>
+    
+    
+    <script>
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const captionText = document.getElementById('caption');
+      const galleryImages = document.querySelectorAll('.gallery-img');
+
+      galleryImages.forEach(img => {
+      img.onclick = function () {
+      lightbox.style.display = 'block';
+      lightboxImg.src = this.src;
+      captionText.innerHTML = this.alt;
+    }
+  });
+
+  document.querySelector('.close').onclick = function () {
+    lightbox.style.display = 'none';
+  }
+</script>
+
 
     <footer>
         <p>🌈 Made with love by OrangeGlow 💫</p>
