@@ -193,6 +193,27 @@ img {
   border: none;
 }
 
+#itch-embed-container {
+  text-align: center;
+  margin: 2em auto;
+}
+
+.mobile-launch-btn {
+  display: none;
+  padding: 1em 1.5em;
+  background-color: #c6767a;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: background 0.2s ease-in-out;
+}
+
+.mobile-launch-btn:hover {
+  background-color: #a55b63;
+}
+
 @media screen and (max-width: 600px) {
   .itch-widget-container {
     padding-bottom: 100%; /* Makes the iframe square! */
