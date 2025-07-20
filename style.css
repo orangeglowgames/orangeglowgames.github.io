@@ -192,3 +192,9 @@ img {
   height: 100%;
   border: none;
 }
+
+@media screen and (max-width: 600px) {
+  .itch-widget-container {
+    padding-bottom: 100%; /* Makes the iframe square! */
+  }
+}
