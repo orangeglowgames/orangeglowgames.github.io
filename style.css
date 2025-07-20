@@ -74,7 +74,7 @@ img {
   border-radius: 8px;
   cursor: pointer;
   transition: transform 0.3s;
-  max-height: 300px;
+  max-height: 500px;
   object-fit: cover;
 }
 
