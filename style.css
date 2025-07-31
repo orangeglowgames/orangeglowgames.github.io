@@ -222,11 +222,11 @@ img {
 
 #jukebox {
   position: relative;
-  right: 50px;
+  right: 20px;
   top: 50%;
   transform: translateY(-50%);
   background: #FFA552;
-  padding: 0.8rem;
+  padding: 1.5rem;
   border-radius: 12px;
   color: #3C1F0F;
   text-align: center;
