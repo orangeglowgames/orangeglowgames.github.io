@@ -279,6 +279,50 @@ playPauseBtn.onclick = () => {
   background-color: #ff9fb3;
 }
 
+.jukebox {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: 300px;
+  max-width: 90%;
+  padding: 1rem;
+  background: #fff5e6;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  border-radius: 12px;
+  transition: transform 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+  z-index: 9999;
+}
+
+.jukebox.minimized {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#toggle-jukebox {
+  background: none;
+  border: none;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.jukebox.minimized {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffa94d;
+  color: white;
+  font-size: 1.5rem;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
 @media screen and (max-width: 600px) {
   .itch-widget-container {
     padding-bottom: 100%; /* Makes the iframe square! */
