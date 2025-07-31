@@ -221,7 +221,7 @@ img {
 }
 
 #jukebox {
-  position: fixed;
+  position: relative;
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
@@ -299,8 +299,15 @@ img {
   }
 
   #jukebox.minimized {
-    right: -160px;
+    max-height: 40px;
+    overflow: hidden;
+    transition: all 0.3s ease;
   }
+
+  #jukebox.minimized h2,
+  #jukebox.minimized .jukebox {
+  display: none;
+}
 
   #toggle-jukebox {
     top: 5px;
