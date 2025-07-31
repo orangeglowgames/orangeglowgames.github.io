@@ -246,7 +246,7 @@ img {
   padding: 1rem;
   background: #fff5e6;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  border-radius: 25px;
+  border-radius: 12px;
   transition: transform 0.3s ease, height 0.3s ease, opacity 0.3s ease;
   z-index: 9999;
 }
