@@ -220,6 +220,40 @@ img {
   max-width: 100%;
 }
 
+#jukebox {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #FFA552;
+  padding: 0.8rem;
+  border-radius: 12px;
+  color: #3C1F0F;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+.jukebox-header {
+  margin-bottom: 0.6rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+#track-select {
+  width: 100%;
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
+}
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#volume-slider {
+  width: 70px;
+  margin-left: 0.5rem;
+}
+
 @media screen and (max-width: 600px) {
   .itch-widget-container {
     padding-bottom: 100%; /* Makes the iframe square! */
