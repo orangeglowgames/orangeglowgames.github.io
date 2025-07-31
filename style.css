@@ -280,7 +280,7 @@ playPauseBtn.onclick = () => {
 }
 
 .jukebox {
-  position: fixed;
+  position: relative;
   bottom: 1rem;
   right: 1rem;
   width: 300px;
