@@ -44,7 +44,7 @@
         </div>
 
         <audio id="bg-audio" loop>
-          <source id="audio-source" src="" type="audio/mp3">
+          <source src="audio/01.BGM_Vibe.mp3" type="audio/mp3">
           Your browser doesn’t support audio.
         </audio>
 
@@ -186,19 +186,23 @@
   // Basic mobile detection
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-  function loadTrack() {
-    source.src = select.value;
-    audio.load();
-  }
+  let currentTrackIndex = select.selectedIndex;
+
+  function loadTrack(index) {
+  currentTrackIndex = index;
+  select.selectedIndex = index;
+  source.src = select.options[index].value;
+  audio.load();
+}
 
   function playAudio() {
-    audio.play().then(() => {
-      isPlaying = true;
-      playPauseBtn.textContent = '⏸️'; // Show pause icon
-    }).catch(err => {
-      console.warn('Playback failed:', err);
-    });
-  }
+  audio.play().then(() => {
+    isPlaying = true;
+    playPauseBtn.textContent = '⏸️'; // Show pause icon
+  }).catch(err => {
+    console.warn('Playback failed:', err);
+  });
+}
 
   function pauseAudio() {
     audio.pause();
@@ -217,8 +221,8 @@
 
   // Change track selection
   select.onchange = () => {
-    loadTrack();
-    if (isPlaying) playAudio(); // Continue playing new song if already playing
+  loadTrack(select.selectedIndex);
+  if (isPlaying) playAudio();
   };
 
   // Volume slider control
@@ -233,19 +237,27 @@
     muteBtn.textContent = audio.muted ? '🔈' : '🔇';
   };
 
+  // Move to next track when current ends
+    audio.addEventListener('ended', () => {
+      currentTrackIndex = (currentTrackIndex + 1) % select.options.length;
+      loadTrack(currentTrackIndex);
+      playAudio();
+      });
+
+
   // Initial setup when page loads
   window.addEventListener('DOMContentLoaded', () => {
-    loadTrack();
-    audio.volume = volumeSlider.value;
+  loadTrack(currentTrackIndex);
+  audio.volume = volumeSlider.value;
 
-    // Only autoplay if not on mobile
-    if (!isMobile) {
-      playAudio();
-    } else {
-      // Set button icon to "play" on mobile
-      playPauseBtn.textContent = '▶️';
-    }
+  if (!isMobile) {
+    // Try to autoplay
+    playAudio();
+  } else {
+    playPauseBtn.textContent = '▶️';
+  }
   });
+    
 </script>
 
 </body>
