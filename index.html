@@ -43,10 +43,11 @@
             </div>
         </div>
 
-        <audio id="bg-audio" loop>
-          <source src="audio/01.BGM_Vibe.mp3" type="audio/mp3">
+        <audio id="bg-audio">
+          <source type="audio/mpeg">
           Your browser doesn’t support audio.
         </audio>
+
 
         <section id="about">
             <h2>About Me</h2>
@@ -174,90 +175,89 @@
 </script>
 
 <script>
-  const audio = document.getElementById('bg-audio');
-  const source = document.getElementById('audio-source');
-  const select = document.getElementById('track-select');
-  const muteBtn = document.getElementById('mute-btn');
-  const volumeSlider = document.getElementById('volume-slider');
-  const playPauseBtn = document.getElementById('play-pause-btn');
+const audio = document.getElementById('bg-audio');
+const playPauseBtn = document.getElementById('play-pause-btn');
+const muteBtn = document.getElementById('mute-btn');
+const select = document.getElementById('bgm-select');
+const volumeSlider = document.getElementById('volume-slider');
 
-  let isPlaying = false;
+const tracks = Array.from(select.options).map(option => option.value);
+let currentTrackIndex = 0;
+let isPlaying = false;
 
-  // Basic mobile detection
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+function isMobileDevice() {
+  return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+}
 
-  let currentTrackIndex = select.selectedIndex;
-
-  function loadTrack(index) {
+function loadTrack(index) {
   currentTrackIndex = index;
-  select.selectedIndex = index;
-  source.src = select.options[index].value;
+  audio.src = tracks[index];
   audio.load();
 }
 
-  function playAudio() {
+function playAudio() {
   audio.play().then(() => {
     isPlaying = true;
     playPauseBtn.textContent = '⏸️'; // Show pause icon
   }).catch(err => {
-    console.warn('Playback failed:', err);
+    console.warn('Autoplay blocked or failed:', err);
   });
 }
 
-  function pauseAudio() {
-    audio.pause();
-    isPlaying = false;
-    playPauseBtn.textContent = '▶️'; // Show play icon
+function pauseAudio() {
+  audio.pause();
+  isPlaying = false;
+  playPauseBtn.textContent = '▶️'; // Show play icon
+}
+
+// Toggle playback
+playPauseBtn.onclick = () => {
+  if (isPlaying) {
+    pauseAudio();
+  } else {
+    playAudio();
   }
+};
 
-  // Play/pause toggle button
-  playPauseBtn.onclick = () => {
-    if (!isPlaying) {
-      playAudio();
-    } else {
-      pauseAudio();
-    }
-  };
-
-  // Change track selection
-  select.onchange = () => {
+// Track selection
+select.onchange = () => {
   loadTrack(select.selectedIndex);
-  if (isPlaying) playAudio();
-  };
+  if (isPlaying) {
+    playAudio();
+  }
+};
 
-  // Volume slider control
-  volumeSlider.oninput = () => {
-    audio.volume = volumeSlider.value;
-    muteBtn.textContent = audio.volume > 0 ? '🔇' : '🔈';
-  };
+// Volume control
+volumeSlider.oninput = () => {
+  audio.volume = volumeSlider.value;
+};
 
-  // Mute toggle button
-  muteBtn.onclick = () => {
-    audio.muted = !audio.muted;
-    muteBtn.textContent = audio.muted ? '🔈' : '🔇';
-  };
+// Mute toggle
+muteBtn.onclick = () => {
+  audio.muted = !audio.muted;
+  muteBtn.textContent = audio.muted ? '🔈' : '🔇';
+};
 
-  // Move to next track when current ends
-    audio.addEventListener('ended', () => {
-      currentTrackIndex = (currentTrackIndex + 1) % select.options.length;
-      loadTrack(currentTrackIndex);
-      playAudio();
-      });
-
-
-  // Initial setup when page loads
-  window.addEventListener('DOMContentLoaded', () => {
+// When the song ends, go to next track
+audio.addEventListener('ended', () => {
+  currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
   loadTrack(currentTrackIndex);
+  select.selectedIndex = currentTrackIndex;
+  playAudio();
+});
+
+// Load first track and autoplay if not mobile
+window.addEventListener('DOMContentLoaded', () => {
+  loadTrack(0);
+  select.selectedIndex = 0;
   audio.volume = volumeSlider.value;
 
-  if (!isMobile) {
-    // Try to autoplay
-    playAudio();
+  if (!isMobileDevice()) {
+    playAudio(); // Desktop autoplay
   } else {
-    playPauseBtn.textContent = '▶️';
+    playPauseBtn.textContent = '▶️'; // Mobile starts paused
   }
-  });
-    
+});
 </script>
 
 </body>
