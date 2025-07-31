@@ -226,8 +226,8 @@ img {
   top: 50%;
   transform: translateY(-50%);
   background: #FFA552;
-  padding: 1.5rem;
-  border-radius: 12px;
+  padding: 0.8rem;
+  border-radius: 25px;
   color: #3C1F0F;
   text-align: center;
   font-family: 'Poppins', sans-serif;
