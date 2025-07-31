@@ -174,35 +174,79 @@
 </script>
 
 <script>
-    const audio = document.getElementById('bg-audio');
-    const source = document.getElementById('audio-source');
-    const select = document.getElementById('track-select');
-    const muteBtn = document.getElementById('mute-btn');
-    const volumeSlider = document.getElementById('volume-slider');
-    
-    function loadTrack() {
-      source.src = select.value;
-      audio.load();
-      audio.play();
-    }
-    select.onchange = loadTrack;
-    
-    volumeSlider.oninput = () => {
-      audio.volume = volumeSlider.value;
-      muteBtn.textContent = audio.volume > 0 ? '🔇' : '🔈';
-    };
-    
-    muteBtn.onclick = () => {
-      audio.muted = !audio.muted;
-      muteBtn.textContent = audio.muted ? '🔈' : '🔇';
-    };
-    
-    // Load first track automatically
-    window.addEventListener('DOMContentLoaded', () => {
-      loadTrack();
-    });
-</script>
+  const audio = document.getElementById('bg-audio');
+  const source = document.getElementById('audio-source');
+  const select = document.getElementById('track-select');
+  const muteBtn = document.getElementById('mute-btn');
+  const volumeSlider = document.getElementById('volume-slider');
+  const playPauseBtn = document.getElementById('play-pause-btn');
 
+  let isPlaying = false;
+
+  // Basic mobile detection
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  function loadTrack() {
+    source.src = select.value;
+    audio.load();
+  }
+
+  function playAudio() {
+    audio.play().then(() => {
+      isPlaying = true;
+      playPauseBtn.textContent = '⏸️'; // Show pause icon
+    }).catch(err => {
+      console.warn('Playback failed:', err);
+    });
+  }
+
+  function pauseAudio() {
+    audio.pause();
+    isPlaying = false;
+    playPauseBtn.textContent = '▶️'; // Show play icon
+  }
+
+  // Play/pause toggle button
+  playPauseBtn.onclick = () => {
+    if (!isPlaying) {
+      playAudio();
+    } else {
+      pauseAudio();
+    }
+  };
+
+  // Change track selection
+  select.onchange = () => {
+    loadTrack();
+    if (isPlaying) playAudio(); // Continue playing new song if already playing
+  };
+
+  // Volume slider control
+  volumeSlider.oninput = () => {
+    audio.volume = volumeSlider.value;
+    muteBtn.textContent = audio.volume > 0 ? '🔇' : '🔈';
+  };
+
+  // Mute toggle button
+  muteBtn.onclick = () => {
+    audio.muted = !audio.muted;
+    muteBtn.textContent = audio.muted ? '🔈' : '🔇';
+  };
+
+  // Initial setup when page loads
+  window.addEventListener('DOMContentLoaded', () => {
+    loadTrack();
+    audio.volume = volumeSlider.value;
+
+    // Only autoplay if not on mobile
+    if (!isMobile) {
+      playAudio();
+    } else {
+      // Set button icon to "play" on mobile
+      playPauseBtn.textContent = '▶️';
+    }
+  });
+</script>
 
 </body>
 
