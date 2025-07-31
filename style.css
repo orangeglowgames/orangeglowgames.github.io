@@ -254,6 +254,18 @@ img {
   margin-left: 0.5rem;
 }
 
+const playPauseBtn = document.getElementById('play-pause-btn');
+
+playPauseBtn.onclick = () => {
+  if (audio.paused) {
+    audio.play();
+    playPauseBtn.textContent = '⏸️';
+  } else {
+    audio.pause();
+    playPauseBtn.textContent = '▶️';
+  }
+};
+
 @media screen and (max-width: 600px) {
   .itch-widget-container {
     padding-bottom: 100%; /* Makes the iframe square! */
