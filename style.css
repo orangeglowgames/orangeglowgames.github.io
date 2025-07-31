@@ -221,7 +221,7 @@ img {
 }
 
 #jukebox {
-  position: relative;
+  position: fixed;
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
