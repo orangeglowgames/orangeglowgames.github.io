@@ -266,6 +266,19 @@ playPauseBtn.onclick = () => {
   }
 };
 
+#play-pause-btn {
+  background-color: #ffc6d1;
+  border: none;
+  font-size: 1.5rem;
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+}
+#play-pause-btn:hover {
+  background-color: #ff9fb3;
+}
+
 @media screen and (max-width: 600px) {
   .itch-widget-container {
     padding-bottom: 100%; /* Makes the iframe square! */
