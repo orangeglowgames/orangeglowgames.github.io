@@ -23,7 +23,7 @@
     <main>
         <div id="jukebox">
             <div class="jukebox-header">🎵 Tune Me Up!</div>
-                <select id="bgm-select">
+                <select id="track-select">
                     <option value="audio/01_BGM_Vibe.mp3">BGM Vibe</option>
                     <option value="audio/02_Ringtone.mp3">Ringtone</option>
                     <option value="audio/03_Trap_Beat.mp3">Trap Beat</option>
@@ -178,7 +178,7 @@
 const audio = document.getElementById('bg-audio');
 const playPauseBtn = document.getElementById('play-pause-btn');
 const muteBtn = document.getElementById('mute-btn');
-const select = document.getElementById('bgm-select');
+const select = document.getElementById('track-select');
 const volumeSlider = document.getElementById('volume-slider');
 
 const tracks = Array.from(select.options).map(option => option.value);
