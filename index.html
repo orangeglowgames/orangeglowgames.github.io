@@ -21,6 +21,32 @@
     </header>
 
     <main>
+        <div id="jukebox">
+            <div class="jukebox-header">🎵 Tune Me Up!</div>
+                <select id="track-select">
+                    <option value="track1.mp3">Dream Chiptune Pop</option>
+                    <option value="track2.mp3">Bubble Rhythm Sparkle</option>
+                    <option value="track3.mp3">Retro Idol Glow</option>
+                    <option value="track1.mp3">Dream Chiptune Pop</option>
+                    <option value="track2.mp3">Bubble Rhythm Sparkle</option>
+                    <option value="track3.mp3">Retro Idol Glow</option>
+                    <option value="track1.mp3">Dream Chiptune Pop</option>
+                    <option value="track2.mp3">Bubble Rhythm Sparkle</option>
+                    <option value="track3.mp3">Retro Idol Glow</option>
+                    <option value="track3.mp3">Retro Idol Glow</option>
+                    <!-- add more as needed -->
+                </select>
+            <div class="controls">
+                <button id="mute-btn">🔇</button>
+                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" />
+            </div>
+        </div>
+
+        <audio id="bg-audio" loop>
+          <source id="audio-source" src="" type="audio/mp3">
+          Your browser doesn’t support audio.
+        </audio>
+
         <section id="about">
             <h2>About Me</h2>
             <p>Hi! I’m a passionate creative with a deep love for K-pop and a mission to bring dreams to life - whether they’re on stage or on screen. From vibrant 2D/3D art and design to video editing, photography, and marketing, I use every tool I know to make magic that supports artists and brings us all closer together.</p>
@@ -96,6 +122,7 @@
                 <a href="https://orangeglowgames.itch.io">Itch.io</a>
             </div>
         </section>
+
     </main>
     
     <footer>
@@ -143,6 +170,36 @@
     if (twoDDesktop) twoDDesktop.style.display = "block";
     if (twoDMobile) twoDMobile.style.display = "none";
   }
+</script>
+
+<script>
+    const audio = document.getElementById('bg-audio');
+    const source = document.getElementById('audio-source');
+    const select = document.getElementById('track-select');
+    const muteBtn = document.getElementById('mute-btn');
+    const volumeSlider = document.getElementById('volume-slider');
+    
+    function loadTrack() {
+      source.src = select.value;
+      audio.load();
+      audio.play();
+    }
+    select.onchange = loadTrack;
+    
+    volumeSlider.oninput = () => {
+      audio.volume = volumeSlider.value;
+      muteBtn.textContent = audio.volume > 0 ? '🔇' : '🔈';
+    };
+    
+    muteBtn.onclick = () => {
+      audio.muted = !audio.muted;
+      muteBtn.textContent = audio.muted ? '🔈' : '🔇';
+    };
+    
+    // Load first track automatically
+    window.addEventListener('DOMContentLoaded', () => {
+      loadTrack();
+    });
 </script>
 
 
