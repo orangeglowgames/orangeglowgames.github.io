@@ -227,7 +227,7 @@ img {
   transform: translateY(-50%);
   background: #FFA552;
   padding: 0.8rem;
-  border-radius: 25px;
+  border-radius: 12px;
   color: #3C1F0F;
   text-align: center;
   font-family: 'Poppins', sans-serif;
@@ -246,7 +246,7 @@ img {
   padding: 1rem;
   background: #fff5e6;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  border-radius: 12px;
+  border-radius: 25px;
   transition: transform 0.3s ease, height 0.3s ease, opacity 0.3s ease;
   z-index: 9999;
 }
