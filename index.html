@@ -1,12 +1,22 @@
 
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OrangeGlow Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-TbdwL6Fv2BZBcfIRYgu1TzCwUnmsRA1YHrP4RblqM9EtxaBmmDqfH7uQ2uUyZbE4Ev2PvP1nl0cnz5yOYFj4ZQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 </head>
+    
 <body>
     <header>
         <h1>OrangeGlow ✨</h1>
@@ -40,9 +50,10 @@
                 <button id="play-pause-btn" title="Play/Pause">▶️</button>
                 <button id="mute-btn">🔇</button>
                 <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" />
-            <button id="toggle-jukebox" aria-label="Toggle jukebox">
-                <span id="toggle-icon">➖</span>
+            <button id="toggle-jukebox">
+                <i id="toggle-icon" class="fa-solid fa-minus"></i>
             </button>
+
             </div>
         </div>
 
@@ -261,6 +272,24 @@ window.addEventListener('DOMContentLoaded', () => {
     playPauseBtn.textContent = '▶️'; // Mobile starts paused
   }
 });
+</script>
+
+<script>
+  const jukebox = document.getElementById('jukebox');
+  const toggleBtn = document.getElementById('toggle-jukebox');
+  const toggleIcon = document.getElementById('toggle-icon');
+
+  toggleBtn.addEventListener('click', () => {
+  jukebox.classList.toggle('minimized');
+
+  if (jukebox.classList.contains('minimized')) {
+    toggleIcon.classList.remove('fa-minus');
+    toggleIcon.classList.add('fa-plus');
+  } else {
+    toggleIcon.classList.remove('fa-plus');
+    toggleIcon.classList.add('fa-minus');
+  }
+  });
 </script>
 
 </body>
